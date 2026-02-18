@@ -1,13 +1,22 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <title>Mycopunk Build Planner</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <div>
-    <body>
-      <h1>Hello Hi</h1>
-      <button>Click me</button>
-    </body>
-  </div>
+
+  <body>
+    <h1>Mycopunk Build Planner</h1>
+
+    <label for="loadout">Loadout</label><br />
+    <input type="text" id="loadoutInput" placeholder="Enter Loadout Name" />
+    <button onclick="addItem()">Search</button>
+
+    <div>
+      <section>
+        <ul id="loadoutList"></ul>
+      </section>
+    </div>
+  </body>
 </html>
