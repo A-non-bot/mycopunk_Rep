@@ -1,3 +1,13 @@
 {
-  "loadouts": []
+  "loadouts": [
+    {
+      "id": 1,
+      "items": [
+        "build",
+        "build",
+        "build",
+        "build"
+      ]
+    }
+  ]
 }
