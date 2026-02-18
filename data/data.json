@@ -1,24 +1,3 @@
 {
-  "loadouts": [
-    {
-      "id": 1,
-      "items": [
-        "build",
-        "build",
-        "build",
-        "build",
-        "build"
-      ]
-    },
-    {
-      "id": 2,
-      "name": "data",
-      "items": []
-    },
-    {
-      "id": 3,
-      "name": "Your mother",
-      "items": []
-    }
-  ]
+  "loadouts": []
 }

@@ -21,10 +21,25 @@ async function renderLoadouts() {
 
   data.loadouts.forEach((loadout) => {
     const li = document.createElement("li");
-    li.textContent = loadout.name;
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = loadout.name;
 
-    // store the id inside the element (useful later)
-    li.dataset.id = loadout.id;
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener("click", () => {
+      console.log("Edit loadout:", loadout.id);
+      // TODO: add functionality
+    });
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener("click", async () => {
+      await deleteLoadout(loadout.id);
+    });
+
+    li.appendChild(nameSpan);
+    li.appendChild(editBtn);
+    li.appendChild(deleteBtn);
 
     ul.appendChild(li);
   });
@@ -38,7 +53,7 @@ async function createLoadout() {
 
   const data = await getData();
 
-  // Generate a new unique ID
+  // generate new ID
   const newId = data.loadouts.length > 0 ? Math.max(...data.loadouts.map((l) => l.id)) + 1 : 1;
 
   const newLoadout = {
@@ -52,9 +67,15 @@ async function createLoadout() {
   await saveData(data);
 
   input.value = "";
-
   await renderLoadouts();
 }
 
-// Run when page loads
+async function deleteLoadout(loadoutId) {
+  const data = await getData();
+  data.loadouts = data.loadouts.filter((l) => l.id !== loadoutId);
+
+  await saveData(data);
+  await renderLoadouts();
+}
+
 renderLoadouts();
