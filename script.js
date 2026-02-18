@@ -1,0 +1,12 @@
+function addItem() {
+  const input = document.getElementById("loadoutInput");
+  const value = input.value.trim();
+
+  if (!value) return;
+
+  const li = document.createElement("li");
+  li.textContent = value;
+  document.getElementById("loadoutList").appendChild(li);
+
+  input.value = "";
+}
