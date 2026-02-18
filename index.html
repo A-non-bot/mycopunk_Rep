@@ -8,16 +8,33 @@
 
 <body>
     <h1>Mycopunk Build Planner</h1>
-        
-    <label for="loadout">Loadout</label><br>
-    <input type="text" id="loadoutInput" placeholder="Enter Loadout Name">
-    <button onclick="addItem()">Search</button>
-            
+<!-- Input to search funtion -->
         <div>
             <section>
+                <label for="loadoutInput">Select Saved Loadout</label><br>
+                <input type="Search" id="loadoutInput" placeholder="Enter Loadout Name">
+                <button onclick="addItem()">Search</button>
+                
                 <ul id="loadoutList">
                 </ul>
             </section>
         </div>
+
+    <h1>Character Selection</h1>
+<!-- Input for character selection -->
+        <div>
+            <selection>
+                <label for="characterSelect">Select Your Employee:</label></br>
+                <select name="characterSelect" id="characterSelect" onchange="addItemChar()">
+                    <option value=""></option>
+                    <option value="wrangler">Wrangler</option>
+                    <option value="bruiser">Bruiser</option>
+                    <option value="scrapper">Scrapper</option>
+                    <option value="glider">Glider</option>
+                </select>
+            </selection>
+        </div>
+
+<script src="script.js"></script>
 </body>
 </html>
