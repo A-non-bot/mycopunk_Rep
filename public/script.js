@@ -26,6 +26,7 @@ async function renderLoadouts() {
 
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
+    editBtn.classList.add("loadout-btn");
     editBtn.addEventListener("click", () => {
       console.log("Edit loadout:", loadout.id);
       // TODO: add functionality
@@ -33,13 +34,18 @@ async function renderLoadouts() {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
+    deleteBtn.classList.add("loadout-btn");
     deleteBtn.addEventListener("click", async () => {
       await deleteLoadout(loadout.id);
     });
 
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-group");
+    buttonContainer.appendChild(editBtn);
+    buttonContainer.appendChild(deleteBtn);
+
     li.appendChild(nameSpan);
-    li.appendChild(editBtn);
-    li.appendChild(deleteBtn);
+    li.appendChild(buttonContainer);
 
     ul.appendChild(li);
   });

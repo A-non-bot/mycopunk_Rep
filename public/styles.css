@@ -1,9 +1,22 @@
 :root {
   --background-color: #fff;
   --text-color: #000;
+  --accent-color: #007acc;
+  --accent-hover-color: #005bb5;
+  --accent-active-color: #003f87;
+  --border-color: #e0e0e0;
 }
 
-/* Global Syles */
+[data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --accent-color: #bb86fc;
+  --accent-hover-color: #9f63d6;
+  --accent-active-color: #7e3eb0;
+  --border-color: #333;
+}
+
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: var(--background-color);
@@ -18,4 +31,127 @@ h3 {
   margin-bottom: 1rem;
   font-family: Verdana, sans-serif;
   text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* Input */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+#loadoutInput {
+  display: block;
+  margin: 0.5rem;
+  padding: 1rem;
+  width: 250px;
+  max-width: 90%;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+#loadoutInputSct {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons */
+#createLoadoutBtn {
+  display: block;
+  margin: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#createLoadoutBtn:hover {
+  background-color: var(--accent-hover-color);
+}
+
+#createLoadoutBtn:active {
+  background-color: var(--accent-active-color);
+}
+
+.loadout-btn {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  background-color: #ccc;
+  color: #000;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.loadout-btn:hover {
+  background-color: #aaa;
+}
+
+/* Loadout List */
+#loadoutList {
+  margin: 0.5rem auto;
+  max-width: 400px;
+  padding: 0;
+}
+
+#loadoutList li {
+  background-color: #f0f0f0;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Wrapper for loadoutButtons alignment */
+.button-group {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Util */
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Media */
+@media (min-width: 768px) {
+  #loadoutInput {
+    width: 300px;
+  }
+
+  #loadoutList {
+    max-width: 600px;
+  }
 }
