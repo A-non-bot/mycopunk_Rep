@@ -1,52 +1,60 @@
-async function renderLoadout(loadoutId) {
-  const res = await fetch("http://localhost:3000/data");
-  const data = await res.json();
+const API_URL = "http://localhost:3000/data";
 
-  const loadout = data.loadouts.find((l) => l.id === loadoutId);
+async function getData() {
+  const res = await fetch(API_URL);
+  return await res.json();
+}
+
+async function saveData(data) {
+  await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data, null, 2),
+  });
+}
+
+async function renderLoadouts() {
+  const data = await getData();
+
   const ul = document.getElementById("loadoutList");
   ul.innerHTML = "";
 
-  if (loadout) {
-    loadout.items.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      ul.appendChild(li);
-    });
-  }
-}
-
-async function addItem() {
-  const input = document.getElementById("loadoutInput");
-  const value = input.value.trim();
-
-  if (!value) return;
-
-  try {
-    const res = await fetch("http://localhost:3000/data");
-    const data = await res.json();
-
-    let loadout = data.loadouts.find((l) => l.id === 1);
-    if (!loadout) {
-      loadout = { id: 1, items: [] };
-      data.loadouts.push(loadout);
-    }
-
-    loadout.items.push(value);
-
-    await fetch("http://localhost:3000/data", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
+  data.loadouts.forEach((loadout) => {
     const li = document.createElement("li");
-    li.textContent = value;
-    document.getElementById("loadoutList").appendChild(li);
+    li.textContent = loadout.name;
 
-    input.value = "";
+    // store the id inside the element (useful later)
+    li.dataset.id = loadout.id;
 
-    await renderLoadout(1);
-  } catch (err) {
-    console.error("Error adding item:", err);
-  }
+    ul.appendChild(li);
+  });
 }
+
+async function createLoadout() {
+  const input = document.getElementById("loadoutInput");
+  const name = input.value.trim();
+
+  if (!name) return;
+
+  const data = await getData();
+
+  // Generate a new unique ID
+  const newId = data.loadouts.length > 0 ? Math.max(...data.loadouts.map((l) => l.id)) + 1 : 1;
+
+  const newLoadout = {
+    id: newId,
+    name: name,
+    items: [],
+  };
+
+  data.loadouts.push(newLoadout);
+
+  await saveData(data);
+
+  input.value = "";
+
+  await renderLoadouts();
+}
+
+// Run when page loads
+renderLoadouts();
